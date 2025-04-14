@@ -1,0 +1,39 @@
+** 編譯打包成 Jar 之後，發佈到 local Maven Repository ------------------------
+
+build.gradle
+```
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+```
+
+在<專案資料夾>
+.\run-gradlew.bat clean build publish
+
+打包好的 jar 會發佈到 local Maven Repository，在這個位置:
+C:\Users\Kang Chih Wei\.m2\repository\com\example\common-filter-starter\0.0.1-SNAPSHOT
+
+
+** 如果 eclipse 用 Ctrl + 滑鼠鍵 看不到 source code ------------------------
+
+且 在 eclipse 裡面 Gradle Tasks -> cleanEclipse 沒效果，處理方式：
+
+build.gradle
+```
+plugins {
+    id 'eclipse'
+}
+if (project.plugins.hasPlugin('eclipse')) {
+    eclipse {
+        classpath {
+            downloadSources = true
+        }
+    }
+}
+```
+
+在<專案資料夾>
+.\run-gradlew.bat --info cleanEclipse eclipse
+
+要用下指令的方式才有效果
+
+

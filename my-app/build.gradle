@@ -1,0 +1,54 @@
+plugins {
+	id 'eclipse'
+	id 'java'
+	id 'org.springframework.boot' version '3.3.10'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'distribution'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+    mavenLocal() 	// 首先檢查本機 Maven 倉庫
+    mavenCentral() 	// 然後檢查 Maven Central
+}
+
+if (project.plugins.hasPlugin('eclipse')) {
+	eclipse {
+	    classpath {
+	      // 讓 eclipse 可以用 Ctrl + 滑鼠鍵 看到 source code
+	      downloadSources = true
+	    }
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	
+	implementation 'com.example:common-filter-starter:0.0.1-SNAPSHOT'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+
+

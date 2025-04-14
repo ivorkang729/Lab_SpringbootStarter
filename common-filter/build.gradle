@@ -1,0 +1,106 @@
+plugins {
+	id 'eclipse'
+	id 'java'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'distribution'
+    id 'maven-publish'
+// 模組的設計要求：可以依賴於 Spring，但不能依賴於 Spring Boot
+	//id 'org.springframework.boot' version '3.3.10'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+    //mavenLocal() 	// 首先檢查本機 Maven 倉庫
+    mavenCentral() 	// 然後檢查 Maven Central
+}
+
+if (project.plugins.hasPlugin('eclipse')) {
+	eclipse {
+	    classpath {
+	      // 讓 eclipse 可以用 Ctrl + 滑鼠鍵 看到 source code
+	      downloadSources = true
+	    }
+	}
+}
+
+dependencies {
+
+//模組的設計要求：可以依賴於 Spring，但不能依賴於 Spring Boot (所以 xxx-starter 要移除)
+	//implementation 'org.springframework.boot:spring-boot-starter-web'   
+    implementation 'org.springframework:spring-web:6.1.8'
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    implementation 'org.slf4j:slf4j-api:2.0.17'
+    
+//若使用了ApplicationContext、@Value、OncePerRequestFilter、EnvironmentAware 等 Spring Context 功能，則需要 spring-context
+    implementation 'org.springframework:spring-context:6.1.18'
+     
+    
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.0'
+}
+
+
+// 阻止 Gradle 在建構過程中生成可獨立運行的 Spring Boot JAR 檔案。不需包含嵌入式伺服器
+// 這是 Spring Boot 提供的功能，因設計準則要求避免依賴 Spring Boot，故註解之
+//bootJar {
+//    enabled = false
+//}
+
+// 讓這個專案能成為一個可發布的 jar 包
+jar {
+    enabled = true
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = project.group
+            artifactId = project.name
+            version = project.version
+            
+            from components.java
+            
+	        versionMapping {
+	            usage('java-api') {
+	                fromResolutionOf('runtimeClasspath')
+	            }
+	            usage('java-runtime') {
+	                fromResolutionResult()
+	            }
+	        }
+	        
+	        pom {
+	            name = 'Common Filters'
+	            description = 'Common Filters in Example Compony.'
+	        }
+        }
+    }
+    
+    // 這裡可以設定 repositories，但對於 Maven Local 其實不是必需的
+    repositories {
+        mavenLocal() // 這會發布到本機的 Maven 倉庫
+    }
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+
+

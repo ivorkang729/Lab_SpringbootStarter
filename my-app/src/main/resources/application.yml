@@ -1,0 +1,24 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  session:
+    timeout: 30m
+
+spring:
+  application:
+  name: my-app
+
+logging:
+  level:
+    com.example.common: DEBUG
+    root: INFO
+    
+cust:
+  filter101:
+    enabled: true
+    urlPatterns: 
+      - /api/v1/*
+      - /api/v2/*
+    order: 10
+    logPrefix: THIS_IS_FILTER_101

@@ -1,0 +1,98 @@
+plugins {
+	id 'eclipse'
+	id 'java'
+    id 'java-library'
+	id 'org.springframework.boot' version '3.3.10'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'distribution'
+    id 'maven-publish'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+    mavenLocal() 	// 首先檢查本機 Maven 倉庫
+    mavenCentral() 	// 然後檢查 Maven Central
+}
+
+if (project.plugins.hasPlugin('eclipse')) {
+	eclipse {
+	    classpath {
+	      // 讓 eclipse 可以用 Ctrl + 滑鼠鍵 看到 source code
+	      downloadSources = true
+	    }
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	
+	api 'com.example:common-filter:0.0.1-SNAPSHOT'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+// 阻止 Gradle 在建構過程中生成可獨立運行的 Spring Boot JAR 檔案。不需包含嵌入式伺服器
+bootJar {
+    enabled = false
+}
+
+// 讓這個專案能成為一個可發布的 jar 包
+jar {
+    enabled = true
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = project.group
+            artifactId = project.name
+            version = project.version
+            
+            from components.java
+            
+	        versionMapping {
+	            usage('java-api') {
+	                fromResolutionOf('runtimeClasspath')
+	            }
+	            usage('java-runtime') {
+	                fromResolutionResult()
+	            }
+	        }
+	        
+	        pom {
+	            name = 'Common Filters Starter'
+	            description = 'A Spring Boot starter for code request filtering'
+	        }
+        }
+    }
+    
+    // 這裡可以設定 repositories，但對於 Maven Local 其實不是必需的
+    repositories {
+        mavenLocal() // 這會發布到本機的 Maven 倉庫
+    }
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+
+
