@@ -51,7 +51,7 @@ Context 核心容器、DI 依賴注入、AOP 等基礎功能
 註[4] Spring Boot Starter:
 
 - 不提供任何 Annotation
-- 是一群 Bean Configuration，告訴 Spring "在特定條件下自動創建這些 Bean"
+- 是一群 Bean Configurations，告訴 Spring "在特定條件下自動創建這些 Bean"
 
 # 專案結構
 
