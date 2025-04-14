@@ -155,7 +155,7 @@ cd D:\Side_Project\Lab_SpringbootStarter
   cd .\my-app; .\run-gradlew.bat clean build; cd ..
 
 - 檢查 Local Maven Repositoy 裡面的 jars  
-  在 C:\Users\{User-Name}\.m2\repository\com\example\  應能看到  
+  在 C:\Users\{User-Name}\.m2\repository\com\example\  應能看到兩個目錄：  
    .\common-filter\  
    .\common-filter-starter\  
 
