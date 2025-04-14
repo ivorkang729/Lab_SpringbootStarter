@@ -11,7 +11,7 @@
    - 因此 Spring Boot 應用，只要引入 common-filter-starter，就能獲得一致的裝配邏輯，節省 @Bean @Configuration 的工作，避免各系統存在重複的配置程式碼
 7. 區分 Spring 和 Spring Boot:
    - 公司有 N 個應用，有些是 Spring 應用，有些是 Spring Boot 應用。
-   - common-filter 可以依賴 Spring API 基礎功能[1]
+   - common-filter 可以依賴 Spring API 基礎功能[1][2][3][4]
    - 並非所有應用都是 Spring Boot 應用，因此 common-filter 不應依賴 Spring Boot API，以免間接引入 Spring Boot Auto-Config 所引發的高機率與現有配置衝突窘境(例如相同的依賴重複引入)
 8. 公司的 Spring boot 應用，只要引入 common-filter-starter，就能自動帶出 common-filter (無需特別引入 common-filter)
 
@@ -38,7 +38,7 @@ Context 核心容器、DI 依賴注入、AOP 等基礎功能
 
 - 運行的 "環境"
 
-註[2] spring-boot-autoconfigure 提供功能:
+註[3] spring-boot-autoconfigure 提供功能:
 
 - @EnableAutoConfiguration - 啟用自動配置的核心註解
 - @ConditionalOnBean, @ConditionalOnMissingBean
@@ -48,7 +48,7 @@ Context 核心容器、DI 依賴注入、AOP 等基礎功能
 - @SpringBootApplication (组合了 @EnableAutoConfiguration, @Configuration, @ComponentScan)
 - @ConfigurationProperties
 
-註[3] Spring Boot Starter:
+註[4] Spring Boot Starter:
 
 - 不提供任何 Annotation
 - 是一群 Bean Configuration，告訴 Spring "在特定條件下自動創建這些 Bean"
