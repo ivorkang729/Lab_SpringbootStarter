@@ -145,38 +145,38 @@ my-app
 cd <專案資料夾>
 cd D:\Side_Project\Lab_SpringbootStarter
 
-- Gradle 編譯打包 common-filter.jar
+- Gradle 編譯打包 common-filter.jar 
   cd .\common-filter; .\run-gradlew.bat clean build publish; cd ..
 
-- Gradle 編譯打包 common-filter-starter.jar
+- Gradle 編譯打包 common-filter-starter.jar 
   cd .\common-filter-starter; .\run-gradlew.bat clean build publish; cd ..
 
-- Gradle 編譯打包 my-app.jar
+- Gradle 編譯打包 my-app.jar 
   cd .\my-app; .\run-gradlew.bat clean build; cd ..
 
-- 檢查 Local Maven Repositoy 裡面的 jars
+- 檢查 Local Maven Repositoy 裡面的 jars 
   在 C:\Users\{User-Name}\.m2\repository\com\example\
    .\common-filter\
    .\common-filter-starter\
 
-- 壓出 Docker Image
+- 壓出 Docker Image 
   cd .\my-app\; docker image build -t lab-springboot-starter:latest .;cd ..
 
-- 檢查目前的容器
+- 檢查目前的容器 
   docker container --help
   docker container ls -a
   docker container rename lab-springboot-starter lab-springboot-starter-xxx
 
-- 檢查目前的 Images
+- 檢查目前的 Images 
   docker image ls
   docker image rm 5eed9667e35e 1de6465dd550
 
-- 建立 & 啟動 Container
+- 建立 & 啟動 Container 
   docker run -it -p 8080:8080 --name lab-springboot-starter lab-springboot-starter:latest
 
-- 重新啟動 Container
+- 重新啟動 Container 
   docker container start -i lab-springboot-starter
 
-- Postman 呼叫 API:
+- Postman 呼叫 API: 
   http://host.docker.internal:8080/api/v1/hello
   http://host.docker.internal:8080/api/v2/hello
