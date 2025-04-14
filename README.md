@@ -198,8 +198,8 @@ productionRuntimeClasspath
 |----+----org.springframework.boot:spring-boot-starter-tomcat:3.3.10
 |----+----org.springframework:spring-web:6.1.18-(*)
 |----\----org.springframework:spring-webmvc:6.1.18
-\----com.example:common-filter-starter:0.0.1-SNAPSHOT	 <== my-app 依賴 common-filter-starter
------\----com.example:common-filter:0.0.1-SNAPSHOT			<== common-filter-starter 依賴 common-filter
+\----com.example:common-filter-starter:0.0.1-SNAPSHOT  <== my-app 依賴 common-filter-starter
+-----\----com.example:common-filter:0.0.1-SNAPSHOT       <== common-filter-starter 依賴 common-filter
 ----------+----jakarta.servlet:jakarta.servlet-api:6.0.0	   <== common-filter 不依賴 spring-boot
 ----------+----org.slf4j:slf4j-api:2.0.17
 ```
