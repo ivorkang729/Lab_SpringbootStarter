@@ -154,7 +154,7 @@ plugins {
 }
 
 dependencies {
-    // 不使用 xxx-starter
+    // 不使用 starter
     //implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // 手動添加依賴 Srping、Servlet、self4J、Spring Context
