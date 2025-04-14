@@ -12,7 +12,7 @@
 7. 區分 Spring 和 Spring Boot:
    - 公司有 N 個應用，有些是 Spring 應用，有些是 Spring Boot 應用。
    - common-filter 可以依賴 Spring API 基礎功能[1][2][3][4]
-   - 並非所有應用都是 Spring Boot 應用，因此 common-filter 不應依賴 Spring Boot API，以免間接引入 Spring Boot Auto-Config 所引發的高機率與現有配置衝突窘境(例如相同的依賴重複引入)
+   - 並非所有應用都是 Spring Boot 應用，因此 common-filter 不應依賴 Spring Boot API，以免間接引入 Spring Boot Auto-Config 高機率與現有配置衝突窘境(例如相同的依賴 重複引入)
 8. 公司的 Spring boot 應用，只要引入 common-filter-starter，就能自動帶出 common-filter (無需特別引入 common-filter)
 
 註[1] Spring Framework 提供功能:
