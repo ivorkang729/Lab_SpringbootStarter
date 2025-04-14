@@ -180,3 +180,26 @@ cd D:\Side_Project\Lab_SpringbootStarter
 - Postman 呼叫 API:  
   http://host.docker.internal:8080/api/v1/hello  
   http://host.docker.internal:8080/api/v2/hello  
+
+# my-app Dependency Tree
+
+```
+productionRuntimeClasspath
++----org.springframework.boot:spring-boot-starter-web-->-3.3.10
+|----+----org.springframework.boot:spring-boot-starter:3.3.10			<== my-app 具備 spring-boot 環境
+|----|----+----org.springframework.boot:spring-boot:3.3.10
+|----|----|----+----org.springframework:spring-core:6.1.18
+|----|----|----\----org.springframework:spring-context:6.1.18
+|----|----|---------+----org.springframework:spring-aop:6.1.18
+|----|----|---------|----+----org.springframework:spring-beans:6.1.18
+|----|----|---------+----org.springframework:spring-expression:6.1.18
+|----|----+----org.springframework.boot:spring-boot-autoconfigure:3.3.10
+|----+----org.springframework.boot:spring-boot-starter-json:3.3.10
+|----+----org.springframework.boot:spring-boot-starter-tomcat:3.3.10
+|----+----org.springframework:spring-web:6.1.18-(*)
+|----\----org.springframework:spring-webmvc:6.1.18
+\----com.example:common-filter-starter:0.0.1-SNAPSHOT					<== my-app 依賴於 common-filter-starter
+-----\----com.example:common-filter:0.0.1-SNAPSHOT									<== common-filter-starter 依賴於 common-filter
+----------+----jakarta.servlet:jakarta.servlet-api:6.0.0
+----------+----org.slf4j:slf4j-api:2.0.17
+```
