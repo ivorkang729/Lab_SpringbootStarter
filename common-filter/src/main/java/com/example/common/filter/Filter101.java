@@ -26,7 +26,7 @@ public class Filter101 extends OncePerRequestFilter {
     private final String logPrefix;
     private final boolean enabled;
     
-    // 這邊用傳統的方式帶入參數，無使用 Filter101Properties
+    // 用傳統的方式從建構式帶入參數
     public Filter101(String logPrefix, boolean enabled) {
         this.logPrefix = logPrefix;
         this.enabled = enabled;
