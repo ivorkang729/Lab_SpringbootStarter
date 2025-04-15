@@ -5,14 +5,13 @@
 3. 將這支 Filter 做成共用元件，以 Jar 的形式發佈在 Maven Repository，Jar 的 GAV 為 `com.example:common-filter:0.0.1`
    - 公司的應用系統，引用 `common-filter` 共用元件，自行撰寫裝配設定檔 (xml-based config 或 java-based config)、參數設定檔 (application.yml) 之後，就能獲得一致的 Filter 功能
 4. 提供 Spring Boot Starter 元件:
-   - 對於 common-filter ，提供 Spring Boot Starter 的自動裝配元件，以 Jar 形式發佈在 Maven Repository，Jar 的 GAV 為 `com.example:common-filter-starter:0.0.1`
+   - 對於 `common-filter` ，提供 Spring Boot Starter 的自動裝配元件，以 Jar 形式發佈在 Maven Repository，Jar 的 GAV 為 `com.example:common-filter-starter:0.0.1`
    - Spring Boot Auto-configuration 的職責：能 "依據條件，自動進行 @Bean @Configuration"
-   - 因此 Spring Boot 應用，只要引入 common-filter-starter，就能獲得一致的裝配邏輯，節省 @Bean @Configuration 的工作，避免各系統存在重複的配置程式碼
+   - 因此 Spring Boot 應用，只要引入 `common-filter-starter`，就能獲得一致的裝配邏輯，節省 @Bean @Configuration 的工作，避免各系統存在重複的配置程式碼
 5. 區分 Spring 和 Spring Boot:
-   - 公司有 N 個應用，有些是 Spring 應用，有些是 Spring Boot 應用。
-   - common-filter 可以依賴 Spring API 基礎功能[1][2][3][4]
-   - 並非所有應用都是 Spring Boot 應用，因此 common-filter 不應依賴 Spring Boot API，以免間接引入 Spring Boot Auto-Config 高機率與現有配置衝突窘境(例如相同的依賴 重複引入)
-6. 公司的 Spring boot 應用，只要引入 common-filter-starter，就能自動帶出 common-filter (無需特別引入 common-filter)
+   - `common-filter` 可以依賴 Spring API 基礎功能[1][2][3][4]
+   - 因為並非所有系統都是 Spring Boot 應用，因此 `common-filter` 不應依賴 Spring Boot API，以免間接引入 Spring Boot Auto-Config 高機率與現有配置衝突窘境(例如相同的依賴 重複引入)
+6. 公司的 Spring Boot 應用，只要引入 `common-filter-starter`，就能自動帶出 `common-filter` (意思是無需特別引入 `common-filter`)
 
 註[1] Spring Framework 提供功能:
 Context 核心容器、DI 依賴注入、AOP 等基礎功能
