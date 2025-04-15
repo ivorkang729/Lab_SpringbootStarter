@@ -1,9 +1,9 @@
 # Requirement
 
 1. 開發一支 Filter，功能請自行訂定
-2. 公司有 N 個應用，有些是 Spring 應用，有些是 Spring Boot 應用，這 N 個應用都需要這支 Filter 所提供的功能
+2. 公司有 N 個應用系統，有些是 Spring 應用，有些是 Spring Boot 應用，這 N 個應用都需要這支 Filter 所提供的功能
 3. 將這支 Filter 做成共用元件，以 Jar 的形式發佈在 Maven Repository，Jar 的 GAV 為 `com.example:common-filter:0.0.1`
-   - 使用端引用 `common-filter` 共用元件，自行撰寫裝配設定檔 (xml-based config 或 java-based config)之後，就能獲得 Filter 功能
+   - 公司的應用系統，引用 `common-filter` 共用元件，自行撰寫裝配設定檔 (xml-based config 或 java-based config)、參數設定檔 (application.yml) 之後，就能獲得一致的 Filter 功能
 4. 提供 Spring Boot Starter 元件:
    - 對於 common-filter ，提供 Spring Boot Starter 的自動裝配元件，以 Jar 形式發佈在 Maven Repository，Jar 的 GAV 為 `com.example:common-filter-starter:0.0.1`
    - Spring Boot Auto-configuration 的職責：能 "依據條件，自動進行 @Bean @Configuration"
