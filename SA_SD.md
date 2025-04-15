@@ -132,8 +132,9 @@ jar {
 	api 'com.example:common-filter:0.0.1-SNAPSHOT'
 ```
 
-使用 api 而非 implementation 宣告 common-filter 依賴，common-filter 的相關依賴都會被引入 common-filter-starter 模組內。
-如果用的是 implementation，則 common-filter-starter 只會引入 common-filter 本身，但再後面的其他依賴不會被引入 common-filter-starter 模組內。
+使用 api 宣告 common-filter 依賴，common-filter 的相關依賴都會被引入。  
+
+如果用 implementation，則只會引入 common-filter 本身，但再後面的其他依賴不會被引入 common-filter-starter 模組內。
 
 使用端(my-app)若想使用 Filter101.java，則在 `application.yml` 指定參數:
 
