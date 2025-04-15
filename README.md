@@ -54,7 +54,8 @@ Context 核心容器、DI 依賴注入、AOP 等基礎功能
 # 專案結構
 
 ## common-filter 核心模組
-common-filter: 共用的自定義 Filter 的核心實現  
+`common-filter` 共用的自定義 Filter 的核心實現  
+
 ```
 common-filter
 |---build.gradle        <== 依賴設定
@@ -79,7 +80,8 @@ common-filter
 ```
 
 # common-filter-starter 模組
-common-filter-starter: 依賴於 common-filter，提供自動配置功能  
+`common-filter-starter` 依賴於 `common-filter`，提供自動配置功能  
+
 ```
 common-filter-starter
 |---build.gradle
@@ -111,7 +113,8 @@ common-filter-starter
 ```
 
 # my-app 應用
-Spring Boot Based 應用，引入 common-filter-starter、設定好 application.yml 就能獲得 Filter 所提供的功能  
+`my-app` 是 Spring Boot 應用，引入 `common-filter-starter`、設定好 `application.yml` 就能獲得 `common-filter` 所提供的功能  
+
 ```
 my-app
 |---build.gradle
